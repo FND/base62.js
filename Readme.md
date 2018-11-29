@@ -46,6 +46,9 @@ base62.decode("g7"); // 999
 
 This uses the default **ASCII character set** for encoding/decoding.
 
+Note that inputs are not validated; invalid inputs might result in unexpected
+results.
+
 It's also possible to define a **custom character set** instead:
 
 ```javascript

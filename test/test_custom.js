@@ -29,6 +29,12 @@ describe("Base62 codec (custom character set)", function() {
         assertSame(decode("7bH", charset), 9999);
         assertSame(decode("~~~", charset), 238327);
     });
+
+    it("should document (unfortunate) behavior for invalid inputs", function() {
+        assertSame(encode(-1, charset), "");
+        assertSame(encode(":", charset), "");
+        assertSame(Number.isNaN(decode(":", charset)), true);
+    });
 });
 
 describe("arbitrary-length charsets (e.g. Base66)", function() {
@@ -42,5 +48,11 @@ describe("arbitrary-length charsets (e.g. Base66)", function() {
 
     it("should decode strings", function() {
         assertSame(decode("ß", charset), 65);
+    });
+
+    it("should document (unfortunate) behavior for invalid inputs", function() {
+        assertSame(encode(-1, charset), "");
+        assertSame(encode(":", charset), "");
+        assertSame(Number.isNaN(decode(":", charset)), true);
     });
 });

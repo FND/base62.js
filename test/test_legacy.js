@@ -11,7 +11,11 @@ describe("encode", function() {
         //test big numbers
         assert.equal(Base62.encode(10000000000001), "2Q3rKTOF");
         assert.equal(Base62.encode(10000000000002), "2Q3rKTOG");
+    });
 
+    it("should document (unfortunate) behavior for invalid inputs", function() {
+        assert.equal(Base62.encode(-1), "");
+        assert.equal(Base62.encode(":"), "");
     });
 });
 
@@ -25,6 +29,10 @@ describe("decode", function() {
         //test big numbers
         assert.equal(Base62.decode("2Q3rKTOF"), 10000000000001);
         assert.equal(Base62.decode("2Q3rKTOH"), 10000000000003);
+    });
+
+    it("should document (unfortunate) behavior for invalid inputs", function() {
+        assert.equal(Base62.decode(":"), 29);
     });
 });
 
@@ -75,6 +83,5 @@ describe("setCharacterSequence", function(){
         assert.throws(function(){
             Base62.setCharacterSet("0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxzz");
         }, /You must use unique characters/);
-
     });
 });

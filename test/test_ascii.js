@@ -35,4 +35,10 @@ describe("Base62 codec (ASCII)", function() {
         assertSame(decode("2Q3rKTOF"), 10000000000001);
         assertSame(decode("2Q3rKTOH"), 10000000000003);
     });
+
+    it("should document (unfortunate) behavior for invalid inputs", function() {
+        assertSame(encode(-1), "");
+        assertSame(encode(":"), "");
+        assertSame(decode(":"), 29);
+    });
 });
